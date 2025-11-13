@@ -23,37 +23,37 @@ Endpoints (see `src/server.js`)
 
 Running locally
 1. Install dependencies:
-   ```sh
-   npm install
-   ```
+  ```sh
+  npm install
+  ```
 2. Development (auto-reload):
-   ```sh
-   npm run dev
-   ```
+  ```sh
+  npm run dev
+  ```
 3. Production / normal run:
-   ```sh
-   npm start
-   ```
-The server listens on the port configured by the `PORT` environment variable (default commonly 3000).
+  ```sh
+  npm start
+  ```
+The server listens on the port configured by the `PORT` environment variable. For the `simple-express-server` workspace the app is scaffolded to use port `8001` by default (you can override this with `PORT`).
 
 Running with Docker
 1. Build the image:
-   ```sh
-   docker build -t simple-express-server .
-   ```
-2. Run the container:
-   ```sh
-   docker run -p 3000:3000 --env PORT=3000 simple-express-server
-   ```
+  ```sh
+  docker build -t simple-express-server .
+  ```
+2. Run the container (example for the `simple-express-server` on port `8001`):
+  ```sh
+  docker run -p 8001:8001 --env PORT=8001 simple-express-server
+  ```
 
 Quick tests (replace :port with actual port)
-- Health check:
+- Health check (Express example):
   ```sh
-  curl -i http://localhost:3000/health
+  curl -i http://localhost:8001/health
   ```
-- Root:
+- Root (Express example):
   ```sh
-  curl -i http://localhost:3000/
+  curl -i http://localhost:8001/
   ```
 
 Notes
