@@ -1,0 +1,35 @@
+/**
+ * Convert a string to snake_case.
+ * - Preserves numbers
+ * - Splits camelCase and PascalCase boundaries
+ * - Replaces non-alphanumeric groups with a single underscore
+ * - Removes diacritics
+ */
+function toSnakeCase(input) {
+    if (input == null) return '';
+    return String(input)
+        // Normalize and remove combining diacritical marks (accents)
+        .normalize('NFKD').replace(/\p{M}/gu, '')
+        // Insert space between lower->Upper or number->Upper transitions (camelCase)
+        .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+        // Replace any non-alphanumeric characters with underscore
+        .replace(/[^A-Za-z0-9]+/g, '_')
+        // Collapse multiple underscores
+        .replace(/_+/g, '_')
+        // Trim leading/trailing underscores
+        .replace(/^_|_$/g, '')
+        // Lowercase final result
+        .toLowerCase();
+}
+
+// Export for Node.js usage
+module.exports = toSnakeCase;
+
+/* Example
+const toSnakeCase = require('./toSnakeCase');
+console.log(toSnakeCase('HelloWorld'));          // hello_world
+console.log(toSnakeCase('  Some--Title_here '));// some_title_here
+console.log(toSnakeCase('déjàVuExample123'));   // deja_vu_example123
+*/
+
+Write a function toCamelCase that can convert a string into camel case string. Handle error for numeric and special characters with descriptive message if input is invalid. Handle edge case like undefined, null, empty string, huge string causing out of memory error. For example, toCamelCase("luccateacher") returns "LuccaTeacher", but toCamelCase("lucca-Teacher") should throw an error.
